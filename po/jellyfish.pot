@@ -1,0 +1,392 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Jellyfish contributors
+# This file is distributed under the same license as the Jellyfish package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Jellyfish 8\n"
+"Report-Msgid-Bugs-To: https://github.com/rhafaelcm/jellyfish/issues\n"
+"POT-Creation-Date: 2026-10-14 08:44-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: extension/extension.js:83
+msgid "This version only works in a Wayland session."
+msgstr ""
+
+#: extension/extension.js:239
+msgid "None of the configured video files could be found."
+msgstr ""
+
+#: extension/extension.js:296
+msgid "The gjs executable could not be found."
+msgstr ""
+
+#: extension/extension.js:334
+msgid "Not all monitor windows became available."
+msgstr ""
+
+#: extension/extension.js:343
+msgid "Could not start the video player."
+msgstr ""
+
+#: extension/extension.js:387
+#, javascript-format
+msgid "No %s GPU was found; using automatic selection."
+msgstr ""
+
+#: extension/extension.js:404
+#, javascript-format
+msgid "Acceleration is unavailable; trying the %s GPU."
+msgstr ""
+
+#: extension/extension.js:468
+#, javascript-format
+msgid "The player reported monitor %d, but only %d monitors exist."
+msgstr ""
+
+#: extension/extension.js:483
+#, javascript-format
+msgid "Could not identify a player window (title: %s; monitors: %d)."
+msgstr ""
+
+#: extension/extension.js:509
+#, javascript-format
+msgid "The player duplicated the window for monitor %d."
+msgstr ""
+
+#: extension/extension.js:562
+msgid "The monitor configuration changed during startup."
+msgstr ""
+
+#: extension/extension.js:583
+msgid "Could not attach the video to the GNOME background."
+msgstr ""
+
+#: extension/extension.js:589
+#, javascript-format
+msgid "The window for monitor %d did not become available in time."
+msgstr ""
+
+#: extension/extension.js:660
+#, javascript-format
+msgid "Mutter released the source window for monitor %d."
+msgstr ""
+
+#: extension/extension.js:674
+#, javascript-format
+msgid "The source window for monitor %d remained visible."
+msgstr ""
+
+#: extension/extension.js:767
+msgid "Hardware acceleration is unavailable; using the CPU."
+msgstr ""
+
+#: extension/extension.js:797
+msgid "The video player exited unexpectedly."
+msgstr ""
+
+#: extension/indicator.js:26 extension/prefs.js:386
+msgid "Mute"
+msgstr ""
+
+#: extension/indicator.js:31 extension/indicator.js:45
+msgid "Pause"
+msgstr ""
+
+#: extension/indicator.js:36
+msgid "Preferences"
+msgstr ""
+
+#: extension/indicator.js:45
+msgid "Resume"
+msgstr ""
+
+#: extension/player.js:187
+msgid "The GStreamer gtk4paintablesink element is unavailable."
+msgstr ""
+
+#: extension/player.js:201
+msgid "The GStreamer playbin3 element is unavailable."
+msgstr ""
+
+#: extension/player.js:369
+msgid "Could not start video playback."
+msgstr ""
+
+#: extension/player.js:574
+#, javascript-format
+msgid "The GStreamer element %s is unavailable."
+msgstr ""
+
+#: extension/prefs.js:17
+msgid "Video files"
+msgstr ""
+
+#: extension/prefs.js:51
+msgid "Video"
+msgstr ""
+
+#: extension/prefs.js:56
+msgid "Advanced"
+msgstr ""
+
+#: extension/prefs.js:61
+msgid "About"
+msgstr ""
+
+#: extension/prefs.js:82
+msgid "Video source"
+msgstr ""
+
+#: extension/prefs.js:86
+msgid "Playback mode"
+msgstr ""
+
+#: extension/prefs.js:88
+msgid "Single video file"
+msgstr ""
+
+#: extension/prefs.js:89
+msgid "Video playlist (experimental)"
+msgstr ""
+
+#: extension/prefs.js:103
+msgid "Single video"
+msgstr ""
+
+#: extension/prefs.js:104
+msgid "The file plays continuously in a loop."
+msgstr ""
+
+#: extension/prefs.js:108
+msgid "Video file"
+msgstr ""
+
+#: extension/prefs.js:112
+msgid "Clear selection"
+msgstr ""
+
+#: extension/prefs.js:116
+msgid "Select…"
+msgstr ""
+
+#: extension/prefs.js:126
+msgid "No video selected"
+msgstr ""
+
+#: extension/prefs.js:136
+msgid "Select a video"
+msgstr ""
+
+#: extension/prefs.js:159
+msgid "Video playlist — Experimental"
+msgstr ""
+
+#: extension/prefs.js:160
+msgid "Videos play in the order shown below."
+msgstr ""
+
+#: extension/prefs.js:164 extension/prefs.js:250
+msgid "Add videos"
+msgstr ""
+
+#: extension/prefs.js:165
+msgid "Only local files are supported."
+msgstr ""
+
+#: extension/prefs.js:168
+msgid "Add…"
+msgstr ""
+
+#: extension/prefs.js:177
+msgid "Plays per video"
+msgstr ""
+
+#: extension/prefs.js:178
+msgid "Includes the first play before advancing."
+msgstr ""
+
+#: extension/prefs.js:211
+msgid "Move up"
+msgstr ""
+
+#: extension/prefs.js:217
+msgid "Move down"
+msgstr ""
+
+#: extension/prefs.js:223
+msgid "Remove"
+msgstr ""
+
+#: extension/prefs.js:276
+msgid "Wallpaper image"
+msgstr ""
+
+#: extension/prefs.js:279
+msgid "Use video image as wallpaper"
+msgstr ""
+
+#: extension/prefs.js:280
+msgid "Update the desktop background using each video’s prepared image."
+msgstr ""
+
+#: extension/prefs.js:282
+msgid "Video images"
+msgstr ""
+
+#: extension/prefs.js:283 extension/prefs.js:471
+msgid ""
+"Images are prepared when videos are added, even when wallpaper sync is off."
+msgstr ""
+
+#: extension/prefs.js:287
+msgid "Cancel"
+msgstr ""
+
+#: extension/prefs.js:294
+msgid "Prepare missing images"
+msgstr ""
+
+#: extension/prefs.js:307
+msgid "Behavior"
+msgstr ""
+
+#: extension/prefs.js:308
+msgid "Resume in the panel menu overrides current automatic pauses."
+msgstr ""
+
+#: extension/prefs.js:312
+msgid "Show panel icon"
+msgstr ""
+
+#: extension/prefs.js:313
+msgid "Show Mute, Pause/Resume, and Preferences in the panel."
+msgstr ""
+
+#: extension/prefs.js:315
+msgid "Pause under maximized or fullscreen windows"
+msgstr ""
+
+#: extension/prefs.js:316
+msgid "Freeze only the covered monitor in the current workspace."
+msgstr ""
+
+#: extension/prefs.js:318
+msgid "Pause on low battery"
+msgstr ""
+
+#: extension/prefs.js:319
+msgid "Only applies while the battery is discharging."
+msgstr ""
+
+#: extension/prefs.js:321
+msgid "Battery threshold"
+msgstr ""
+
+#: extension/prefs.js:340
+msgid "Pause when another player plays video"
+msgstr ""
+
+#: extension/prefs.js:341
+msgid "Use MPRIS; ignore audio and unidentified media."
+msgstr ""
+
+#: extension/prefs.js:343
+msgid "Enable logging"
+msgstr ""
+
+#: extension/prefs.js:343
+msgid "Show detailed diagnostics in the journal."
+msgstr ""
+
+#: extension/prefs.js:346
+msgid "Startup delay (ms)"
+msgstr ""
+
+#: extension/prefs.js:347
+msgid "Set to zero to start immediately."
+msgstr ""
+
+#: extension/prefs.js:362
+msgid "Performance"
+msgstr ""
+
+#: extension/prefs.js:363
+msgid "An integrated GPU reduces power use and copies between GPUs."
+msgstr ""
+
+#: extension/prefs.js:368
+msgid "Graphics processor"
+msgstr ""
+
+#: extension/prefs.js:369
+msgid "A dedicated GPU does not turn off the GPU used by GNOME Shell."
+msgstr ""
+
+#: extension/prefs.js:371
+msgid "Automatic (prefer integrated GPU)"
+msgstr ""
+
+#: extension/prefs.js:384
+msgid "Audio"
+msgstr ""
+
+#: extension/prefs.js:387
+msgid "Mute the video without changing the volume."
+msgstr ""
+
+#: extension/prefs.js:388
+msgid "Volume"
+msgstr ""
+
+#: extension/prefs.js:442
+#, javascript-format
+msgid "Preparing image %d of %d…"
+msgstr ""
+
+#: extension/prefs.js:456
+msgid "Some video images could not be prepared"
+msgstr ""
+
+#: extension/prefs.js:457
+msgid "Check that these files contain a supported video and try again:"
+msgstr ""
+
+#: extension/prefs.js:460
+msgid "Close"
+msgstr ""
+
+#: extension/prefs.js:509
+#, javascript-format
+msgid "Version %s"
+msgstr ""
+
+#: extension/prefs.js:512
+msgid "Video wallpapers for GNOME Shell on Wayland."
+msgstr ""
+
+#: extension/prefs.js:517
+msgid ""
+"Free software licensed under the GNU General Public License, version 3 or "
+"later."
+msgstr ""
+
+#: extension/prefs.js:523
+msgid "This program comes with absolutely no warranty."
+msgstr ""
+
+#: extension/prefs.js:528
+msgid "Project on GitHub"
+msgstr ""
+
+#: extension/prefs.js:530
+msgid "Read the license"
+msgstr ""

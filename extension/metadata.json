@@ -1,0 +1,16 @@
+{
+  "name": "Jellyfish",
+  "description": "Local video wallpapers and playlists for GNOME Shell on Wayland.",
+  "uuid": "jellyfish@rhafaelcm.github.io",
+  "url": "https://github.com/rhafaelcm/jellyfish",
+  "gettext-domain": "jellyfish",
+  "settings-schema": "org.gnome.shell.extensions.jellyfish",
+  "shell-version": [
+    "50"
+  ],
+  "session-modes": [
+    "user"
+  ],
+  "version": 8
+}
+

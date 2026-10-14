@@ -1,0 +1,298 @@
+# Brazilian Portuguese translation of Jellyfish.
+# Copyright (C) 2026 Jellyfish contributors
+# This file is distributed under the same license as Jellyfish.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Jellyfish 8\n"
+"Report-Msgid-Bugs-To: https://github.com/rhafaelcm/jellyfish/issues\n"
+"POT-Creation-Date: 2026-10-14 00:00+0000\n"
+"PO-Revision-Date: 2026-10-14 00:00+0000\n"
+"Last-Translator: Jellyfish contributors\n"
+"Language-Team: Brazilian Portuguese\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "A dedicated GPU does not turn off the GPU used by GNOME Shell."
+msgstr "Uma GPU dedicada não desliga a GPU usada pelo GNOME Shell."
+
+msgid "About"
+msgstr "Sobre"
+
+#, javascript-format
+msgid "Acceleration is unavailable; trying the %s GPU."
+msgstr "Aceleração indisponível; tentando a GPU %s."
+
+msgid "Add videos"
+msgstr "Adicionar vídeos"
+
+msgid "Add…"
+msgstr "Adicionar…"
+
+msgid "Advanced"
+msgstr "Avançado"
+
+msgid "An integrated GPU reduces power use and copies between GPUs."
+msgstr "A GPU integrada reduz consumo e evita cópias entre placas."
+
+msgid "Audio"
+msgstr "Áudio"
+
+msgid "Automatic (prefer integrated GPU)"
+msgstr "Automático (preferir integrada)"
+
+msgid "Battery threshold"
+msgstr "Limite de bateria"
+
+msgid "Behavior"
+msgstr "Comportamento"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Check that these files contain a supported video and try again:"
+msgstr "Verifique se estes arquivos contêm um vídeo compatível e tente novamente:"
+
+msgid "Clear selection"
+msgstr "Limpar seleção"
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "Could not attach the video to the GNOME background."
+msgstr "Não foi possível integrar o vídeo ao fundo do GNOME."
+
+#, javascript-format
+msgid "Could not identify a player window (title: %s; monitors: %d)."
+msgstr "Não foi possível identificar uma janela do reprodutor (título: %s; monitores: %d)."
+
+msgid "Could not start the video player."
+msgstr "Não foi possível iniciar o reprodutor de vídeo."
+
+msgid "Could not start video playback."
+msgstr "Não foi possível iniciar a reprodução do vídeo."
+
+msgid "Enable logging"
+msgstr "Ativar logs"
+
+msgid "Free software licensed under the GNU General Public License, version 3 or later."
+msgstr "Software livre licenciado sob a Licença Pública Geral GNU, versão 3 ou posterior."
+
+msgid "Freeze only the covered monitor in the current workspace."
+msgstr "Congela apenas o monitor coberto no workspace atual."
+
+msgid "Graphics processor"
+msgstr "Processador gráfico"
+
+msgid "Hardware acceleration is unavailable; using the CPU."
+msgstr "Aceleração de hardware indisponível; usando a CPU."
+
+msgid "Images are prepared when videos are added, even when wallpaper sync is off."
+msgstr "As imagens são preparadas ao adicionar vídeos, mesmo com a sincronização do papel de parede desativada."
+
+msgid "Includes the first play before advancing."
+msgstr "Inclui a primeira execução antes de avançar."
+
+msgid "Move down"
+msgstr "Mover para baixo"
+
+msgid "Move up"
+msgstr "Mover para cima"
+
+msgid "Mute"
+msgstr "Mudo"
+
+msgid "Mute the video without changing the volume."
+msgstr "Silencia o vídeo sem alterar o volume configurado."
+
+#, javascript-format
+msgid "Mutter released the source window for monitor %d."
+msgstr "O Mutter liberou a janela-fonte do monitor %d."
+
+#, javascript-format
+msgid "No %s GPU was found; using automatic selection."
+msgstr "Nenhuma GPU %s foi encontrada; usando seleção automática."
+
+msgid "No video selected"
+msgstr "Nenhum vídeo selecionado"
+
+msgid "None of the configured video files could be found."
+msgstr "Nenhum arquivo de vídeo configurado foi encontrado."
+
+msgid "Not all monitor windows became available."
+msgstr "Nem todas as janelas dos monitores ficaram disponíveis."
+
+msgid "Only applies while the battery is discharging."
+msgstr "Aplica somente enquanto o computador estiver descarregando."
+
+msgid "Only local files are supported."
+msgstr "Somente arquivos locais são aceitos."
+
+msgid "Pause"
+msgstr "Pausar"
+
+msgid "Pause on low battery"
+msgstr "Pausar com bateria baixa"
+
+msgid "Pause under maximized or fullscreen windows"
+msgstr "Pausar sob janela maximizada ou em tela cheia"
+
+msgid "Pause when another player plays video"
+msgstr "Pausar quando outro player reproduzir vídeo"
+
+msgid "Performance"
+msgstr "Desempenho"
+
+msgid "Playback mode"
+msgstr "Modo de reprodução"
+
+msgid "Plays per video"
+msgstr "Execuções de cada vídeo"
+
+msgid "Preferences"
+msgstr "Configurações"
+
+msgid "Prepare missing images"
+msgstr "Preparar imagens ausentes"
+
+#, javascript-format
+msgid "Preparing image %d of %d…"
+msgstr "Preparando imagem %d de %d…"
+
+msgid "Project on GitHub"
+msgstr "Projeto no GitHub"
+
+msgid "Read the license"
+msgstr "Ler a licença"
+
+msgid "Remove"
+msgstr "Remover"
+
+msgid "Resume"
+msgstr "Continuar"
+
+msgid "Resume in the panel menu overrides current automatic pauses."
+msgstr "As pausas automáticas podem ser ignoradas pelo menu Continuar."
+
+msgid "Select a video"
+msgstr "Selecionar vídeo"
+
+msgid "Select…"
+msgstr "Selecionar…"
+
+msgid "Set to zero to start immediately."
+msgstr "Use zero para iniciar imediatamente."
+
+msgid "Show Mute, Pause/Resume, and Preferences in the panel."
+msgstr "Exibe os comandos Mudo, Pausar/Continuar e Configurações."
+
+msgid "Show detailed diagnostics in the journal."
+msgstr "Mostra diagnósticos detalhados no journal."
+
+msgid "Show panel icon"
+msgstr "Mostrar ícone no painel"
+
+msgid "Single video"
+msgstr "Vídeo único"
+
+msgid "Single video file"
+msgstr "Um arquivo de vídeo"
+
+msgid "Some video images could not be prepared"
+msgstr "Não foi possível preparar algumas imagens dos vídeos"
+
+msgid "Startup delay (ms)"
+msgstr "Atraso de inicialização (ms)"
+
+#, javascript-format
+msgid "The GStreamer element %s is unavailable."
+msgstr "O elemento GStreamer %s não está disponível."
+
+msgid "The GStreamer gtk4paintablesink element is unavailable."
+msgstr "O elemento GStreamer gtk4paintablesink não está disponível."
+
+msgid "The GStreamer playbin3 element is unavailable."
+msgstr "O elemento GStreamer playbin3 não está disponível."
+
+msgid "The file plays continuously in a loop."
+msgstr "O arquivo é reproduzido continuamente em loop."
+
+msgid "The gjs executable could not be found."
+msgstr "O executável gjs não foi encontrado."
+
+msgid "The monitor configuration changed during startup."
+msgstr "A configuração de monitores mudou durante a inicialização."
+
+#, javascript-format
+msgid "The player duplicated the window for monitor %d."
+msgstr "O reprodutor duplicou a janela do monitor %d."
+
+#, javascript-format
+msgid "The player reported monitor %d, but only %d monitors exist."
+msgstr "O reprodutor indicou o monitor %d, mas existem apenas %d monitores."
+
+#, javascript-format
+msgid "The source window for monitor %d remained visible."
+msgstr "A janela-fonte do monitor %d permaneceu visível."
+
+msgid "The video player exited unexpectedly."
+msgstr "O reprodutor de vídeo foi encerrado inesperadamente."
+
+#, javascript-format
+msgid "The window for monitor %d did not become available in time."
+msgstr "A janela do monitor %d não ficou disponível a tempo."
+
+msgid "This program comes with absolutely no warranty."
+msgstr "Este programa não possui absolutamente nenhuma garantia."
+
+msgid "This version only works in a Wayland session."
+msgstr "Esta versão funciona somente em uma sessão Wayland."
+
+msgid "Update the desktop background using each video’s prepared image."
+msgstr "Atualiza o fundo da área de trabalho com a imagem preparada de cada vídeo."
+
+msgid "Use MPRIS; ignore audio and unidentified media."
+msgstr "Usa MPRIS e ignora áudio ou mídia cujo tipo não seja identificável."
+
+msgid "Use video image as wallpaper"
+msgstr "Usar imagem do vídeo como papel de parede"
+
+#, javascript-format
+msgid "Version %s"
+msgstr "Versão %s"
+
+msgid "Video"
+msgstr "Vídeo"
+
+msgid "Video file"
+msgstr "Arquivo de vídeo"
+
+msgid "Video files"
+msgstr "Arquivos de vídeo"
+
+msgid "Video images"
+msgstr "Imagens dos vídeos"
+
+msgid "Video playlist (experimental)"
+msgstr "Lista de vídeos (experimental)"
+
+msgid "Video playlist — Experimental"
+msgstr "Lista de vídeos — Experimental"
+
+msgid "Video source"
+msgstr "Fonte do vídeo"
+
+msgid "Video wallpapers for GNOME Shell on Wayland."
+msgstr "Papéis de parede em vídeo para o GNOME Shell no Wayland."
+
+msgid "Videos play in the order shown below."
+msgstr "A ordem abaixo define a sequência de reprodução."
+
+msgid "Volume"
+msgstr "Volume"
+
+msgid "Wallpaper image"
+msgstr "Imagem de fundo"

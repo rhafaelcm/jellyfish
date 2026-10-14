@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.jellyfish"
+          path="/org/gnome/shell/extensions/jellyfish/">
+    <key name="video-uri" type="s">
+      <default>''</default>
+      <summary>Video URI</summary>
+      <description>Local video file played as wallpaper.</description>
+    </key>
+    <key name="video-mode" type="s">
+      <choices>
+        <choice value="single"/>
+        <choice value="playlist"/>
+      </choices>
+      <default>'single'</default>
+      <summary>Video source mode</summary>
+      <description>Use a single file or the experimental playlist.</description>
+    </key>
+    <key name="playlist-uris" type="as">
+      <default>[]</default>
+      <summary>Video playlist</summary>
+      <description>Ordered list of local video files.</description>
+    </key>
+    <key name="playlist-repeat-count" type="i">
+      <range min="1" max="2147483647"/>
+      <default>5</default>
+      <summary>Plays per video</summary>
+      <description>Total number of plays before advancing in the playlist.</description>
+    </key>
+    <key name="gpu-mode" type="s">
+      <choices>
+        <choice value="auto"/>
+        <choice value="intel"/>
+        <choice value="nvidia"/>
+        <choice value="amd"/>
+      </choices>
+      <default>'auto'</default>
+      <summary>Player GPU</summary>
+      <description>Select automatically or prefer an Intel, NVIDIA, or AMD GPU.</description>
+    </key>
+    <key name="volume" type="i">
+      <range min="0" max="100"/>
+      <default>50</default>
+      <summary>Volume</summary>
+      <description>Audio level between zero and one hundred percent.</description>
+    </key>
+    <key name="muted" type="b">
+      <default>false</default>
+      <summary>Muted</summary>
+      <description>Mute audio without changing the configured level.</description>
+    </key>
+    <key name="show-panel-icon" type="b">
+      <default>true</default>
+      <summary>Show panel icon</summary>
+      <description>Show the Jellyfish menu in the top panel.</description>
+    </key>
+    <key name="pause-on-maximized" type="b">
+      <default>false</default>
+      <summary>Pause under large windows</summary>
+      <description>Freeze video on monitors covered by a maximized or fullscreen window.</description>
+    </key>
+    <key name="pause-on-low-battery" type="b">
+      <default>false</default>
+      <summary>Pause on low battery</summary>
+      <description>Pause while discharging when the battery reaches the threshold.</description>
+    </key>
+    <key name="low-battery-threshold" type="i">
+      <range min="1" max="100"/>
+      <default>20</default>
+      <summary>Battery threshold</summary>
+      <description>Percentage considered a low battery level.</description>
+    </key>
+    <key name="pause-on-media-playback" type="b">
+      <default>false</default>
+      <summary>Pause during other videos</summary>
+      <description>Pause when an MPRIS player plays identifiable video.</description>
+    </key>
+    <key name="debug-logging" type="b">
+      <default>false</default>
+      <summary>Enable logging</summary>
+      <description>Show detailed diagnostics in the journal.</description>
+    </key>
+    <key name="startup-delay-ms" type="u">
+      <default>1000</default>
+      <summary>Startup delay</summary>
+      <description>Delay in milliseconds before starting the player; zero starts immediately.</description>
+    </key>
+    <key name="use-video-wallpaper" type="b">
+      <default>true</default>
+      <summary>Use video image as wallpaper</summary>
+      <description>Synchronize the desktop background with the current video's prepared image.</description>
+    </key>
+    <key name="video-images-revision" type="s">
+      <default>''</default>
+      <summary>Prepared images revision</summary>
+      <description>Notifies the extension when preferences finish preparing video images.</description>
+    </key>
+    <key name="wallpaper-state" type="s">
+      <default>''</default>
+      <summary>Wallpaper recovery state</summary>
+      <description>Internal backup of the previous background and last applied values.</description>
+    </key>
+  </schema>
+</schemalist>
+
