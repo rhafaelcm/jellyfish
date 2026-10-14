@@ -3,6 +3,8 @@
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 
+import {ImagePreparationError, parseImageWorkerError} from './image-errors.js';
+
 export function imageKey(uri, size, modified, microseconds = 0) {
     return GLib.compute_checksum_for_string(GLib.ChecksumType.SHA256,
         JSON.stringify([1, uri, size, modified, microseconds]), -1);
@@ -38,10 +40,17 @@ export function cachedImages(uri) {
 
 // Extraction is only invoked by preferences, never by the playback process.
 export async function prepareImages(extensionPath, uri, cancellable) {
+    if (cancellable.is_cancelled())
+        throw new ImagePreparationError('cancelled', 'Image preparation cancelled');
     const existing = cachedImages(uri);
     if (existing)
         return existing;
-    const paths = imagePaths(uri);
+    let paths;
+    try {
+        paths = imagePaths(uri);
+    } catch (error) {
+        throw new ImagePreparationError('source', error.message);
+    }
     const process = Gio.Subprocess.new([
         'gjs', '-m', GLib.build_filenamev([extensionPath, 'image-worker.js']),
         uri, paths.wallpaper, paths.thumbnail,
@@ -57,11 +66,13 @@ export async function prepareImages(extensionPath, uri, cancellable) {
         await new Promise((resolve, reject) => {
             process.communicate_utf8_async(null, null, (child, result) => {
                 try {
-                    const [, , stderr] = child.communicate_utf8_finish(result);
+                    const [, stdout, stderr] = child.communicate_utf8_finish(result);
                     if (cancellable.is_cancelled())
-                        throw new Error('Image preparation cancelled');
-                    if (timedOut || !child.get_successful())
-                        throw new Error(timedOut ? 'Image preparation timed out' : stderr.trim());
+                        throw new ImagePreparationError('cancelled', 'Image preparation cancelled');
+                    if (timedOut)
+                        throw new ImagePreparationError('timeout', 'Image preparation timed out');
+                    if (!child.get_successful())
+                        throw parseImageWorkerError(stdout, stderr);
                     resolve();
                 } catch (error) {
                     reject(error);
@@ -69,8 +80,14 @@ export async function prepareImages(extensionPath, uri, cancellable) {
             });
         });
         // A file replaced during extraction must not publish obsolete images.
-        if (imagePaths(uri).wallpaper !== paths.wallpaper || !cachedImages(uri))
-            throw new Error('The video changed during image preparation');
+        let currentImages;
+        try {
+            currentImages = imagePaths(uri);
+        } catch (error) {
+            throw new ImagePreparationError('source', error.message);
+        }
+        if (currentImages.wallpaper !== paths.wallpaper || !cachedImages(uri))
+            throw new ImagePreparationError('changed', 'The video changed during image preparation');
         return paths;
     } finally {
         if (!timedOut)

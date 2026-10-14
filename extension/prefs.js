@@ -42,6 +42,27 @@ function fileName(uri) {
     }
 }
 
+function imageFailureDescription(error) {
+    switch (error.code) {
+    case 'missing-plugin':
+        return _('A required GStreamer plugin or software decoder is missing. Check the dependencies in the README.');
+    case 'decode':
+        return _('The video could not be decoded using software. Check its format and installed codecs.');
+    case 'convert':
+        return _('A video frame was decoded, but it could not be converted to a JPEG image.');
+    case 'timeout':
+        return _('Image preparation took too long. Try again.');
+    case 'write':
+        return _('The images could not be saved. Check available disk space and cache folder permissions.');
+    case 'source':
+        return _('The video file could not be read. Check that it exists and is accessible.');
+    case 'changed':
+        return _('The video changed during preparation. Select it again.');
+    default:
+        return _('Image preparation failed unexpectedly. See the journal for technical details.');
+    }
+}
+
 export default class JellyfishPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
         const settings = this.getSettings();
@@ -446,16 +467,15 @@ export default class JellyfishPreferences extends ExtensionPreferences {
                     prepared.push(uris[index]);
                 } catch (error) {
                     if (!this._cancellable.is_cancelled()) {
-                        failed.push(fileName(uris[index]));
-                        console.error(error, 'Failed to prepare video images');
+                        failed.push(`${fileName(uris[index])}\n${imageFailureDescription(error)}`);
+                        console.error(error, `Failed to prepare video images for ${uris[index]}`);
                     }
                 }
             }
             if (!this._closed && failed.length) {
                 const dialog = new Adw.AlertDialog({
                     heading: _('Some video images could not be prepared'),
-                    body: _('Check that these files contain a supported video and try again:') +
-                        '\n\n' + failed.join('\n'),
+                    body: failed.join('\n\n'),
                 });
                 dialog.add_response('close', _('Close'));
                 dialog.present(this._window);

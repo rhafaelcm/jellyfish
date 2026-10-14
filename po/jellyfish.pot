@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Jellyfish 8\n"
+"Project-Id-Version: Jellyfish 9\n"
 "Report-Msgid-Bugs-To: https://github.com/rhafaelcm/jellyfish/issues\n"
-"POT-Creation-Date: 2026-10-14 08:44-0400\n"
+"POT-Creation-Date: 2026-10-14 09:21-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,7 +93,7 @@ msgstr ""
 msgid "The video player exited unexpectedly."
 msgstr ""
 
-#: extension/indicator.js:26 extension/prefs.js:386
+#: extension/indicator.js:26 extension/prefs.js:407
 msgid "Mute"
 msgstr ""
 
@@ -130,263 +130,300 @@ msgstr ""
 msgid "Video files"
 msgstr ""
 
-#: extension/prefs.js:51
-msgid "Video"
+#: extension/prefs.js:48
+msgid ""
+"A required GStreamer plugin or software decoder is missing. Check the "
+"dependencies in the README."
+msgstr ""
+
+#: extension/prefs.js:50
+msgid ""
+"The video could not be decoded using software. Check its format and "
+"installed codecs."
+msgstr ""
+
+#: extension/prefs.js:52
+msgid ""
+"A video frame was decoded, but it could not be converted to a JPEG image."
+msgstr ""
+
+#: extension/prefs.js:54
+msgid "Image preparation took too long. Try again."
 msgstr ""
 
 #: extension/prefs.js:56
+msgid ""
+"The images could not be saved. Check available disk space and cache folder "
+"permissions."
+msgstr ""
+
+#: extension/prefs.js:58
+msgid ""
+"The video file could not be read. Check that it exists and is accessible."
+msgstr ""
+
+#: extension/prefs.js:60
+msgid "The video changed during preparation. Select it again."
+msgstr ""
+
+#: extension/prefs.js:62
+msgid ""
+"Image preparation failed unexpectedly. See the journal for technical details."
+msgstr ""
+
+#: extension/prefs.js:72
+msgid "Video"
+msgstr ""
+
+#: extension/prefs.js:77
 msgid "Advanced"
 msgstr ""
 
-#: extension/prefs.js:61
+#: extension/prefs.js:82
 msgid "About"
 msgstr ""
 
-#: extension/prefs.js:82
+#: extension/prefs.js:103
 msgid "Video source"
 msgstr ""
 
-#: extension/prefs.js:86
+#: extension/prefs.js:107
 msgid "Playback mode"
 msgstr ""
 
-#: extension/prefs.js:88
+#: extension/prefs.js:109
 msgid "Single video file"
 msgstr ""
 
-#: extension/prefs.js:89
+#: extension/prefs.js:110
 msgid "Video playlist (experimental)"
 msgstr ""
 
-#: extension/prefs.js:103
+#: extension/prefs.js:124
 msgid "Single video"
 msgstr ""
 
-#: extension/prefs.js:104
+#: extension/prefs.js:125
 msgid "The file plays continuously in a loop."
 msgstr ""
 
-#: extension/prefs.js:108
+#: extension/prefs.js:129
 msgid "Video file"
 msgstr ""
 
-#: extension/prefs.js:112
+#: extension/prefs.js:133
 msgid "Clear selection"
 msgstr ""
 
-#: extension/prefs.js:116
+#: extension/prefs.js:137
 msgid "Select…"
 msgstr ""
 
-#: extension/prefs.js:126
+#: extension/prefs.js:147
 msgid "No video selected"
 msgstr ""
 
-#: extension/prefs.js:136
+#: extension/prefs.js:157
 msgid "Select a video"
 msgstr ""
 
-#: extension/prefs.js:159
+#: extension/prefs.js:180
 msgid "Video playlist — Experimental"
 msgstr ""
 
-#: extension/prefs.js:160
+#: extension/prefs.js:181
 msgid "Videos play in the order shown below."
 msgstr ""
 
-#: extension/prefs.js:164 extension/prefs.js:250
+#: extension/prefs.js:185 extension/prefs.js:271
 msgid "Add videos"
 msgstr ""
 
-#: extension/prefs.js:165
+#: extension/prefs.js:186
 msgid "Only local files are supported."
 msgstr ""
 
-#: extension/prefs.js:168
+#: extension/prefs.js:189
 msgid "Add…"
 msgstr ""
 
-#: extension/prefs.js:177
+#: extension/prefs.js:198
 msgid "Plays per video"
 msgstr ""
 
-#: extension/prefs.js:178
+#: extension/prefs.js:199
 msgid "Includes the first play before advancing."
 msgstr ""
 
-#: extension/prefs.js:211
+#: extension/prefs.js:232
 msgid "Move up"
 msgstr ""
 
-#: extension/prefs.js:217
+#: extension/prefs.js:238
 msgid "Move down"
 msgstr ""
 
-#: extension/prefs.js:223
+#: extension/prefs.js:244
 msgid "Remove"
 msgstr ""
 
-#: extension/prefs.js:276
+#: extension/prefs.js:297
 msgid "Wallpaper image"
 msgstr ""
 
-#: extension/prefs.js:279
+#: extension/prefs.js:300
 msgid "Use video image as wallpaper"
 msgstr ""
 
-#: extension/prefs.js:280
+#: extension/prefs.js:301
 msgid "Update the desktop background using each video’s prepared image."
 msgstr ""
 
-#: extension/prefs.js:282
+#: extension/prefs.js:303
 msgid "Video images"
 msgstr ""
 
-#: extension/prefs.js:283 extension/prefs.js:471
+#: extension/prefs.js:304 extension/prefs.js:491
 msgid ""
 "Images are prepared when videos are added, even when wallpaper sync is off."
 msgstr ""
 
-#: extension/prefs.js:287
+#: extension/prefs.js:308
 msgid "Cancel"
 msgstr ""
 
-#: extension/prefs.js:294
+#: extension/prefs.js:315
 msgid "Prepare missing images"
 msgstr ""
 
-#: extension/prefs.js:307
+#: extension/prefs.js:328
 msgid "Behavior"
 msgstr ""
 
-#: extension/prefs.js:308
+#: extension/prefs.js:329
 msgid "Resume in the panel menu overrides current automatic pauses."
 msgstr ""
 
-#: extension/prefs.js:312
+#: extension/prefs.js:333
 msgid "Show panel icon"
 msgstr ""
 
-#: extension/prefs.js:313
+#: extension/prefs.js:334
 msgid "Show Mute, Pause/Resume, and Preferences in the panel."
 msgstr ""
 
-#: extension/prefs.js:315
+#: extension/prefs.js:336
 msgid "Pause under maximized or fullscreen windows"
 msgstr ""
 
-#: extension/prefs.js:316
+#: extension/prefs.js:337
 msgid "Freeze only the covered monitor in the current workspace."
 msgstr ""
 
-#: extension/prefs.js:318
+#: extension/prefs.js:339
 msgid "Pause on low battery"
 msgstr ""
 
-#: extension/prefs.js:319
+#: extension/prefs.js:340
 msgid "Only applies while the battery is discharging."
 msgstr ""
 
-#: extension/prefs.js:321
+#: extension/prefs.js:342
 msgid "Battery threshold"
 msgstr ""
 
-#: extension/prefs.js:340
+#: extension/prefs.js:361
 msgid "Pause when another player plays video"
 msgstr ""
 
-#: extension/prefs.js:341
+#: extension/prefs.js:362
 msgid "Use MPRIS; ignore audio and unidentified media."
 msgstr ""
 
-#: extension/prefs.js:343
+#: extension/prefs.js:364
 msgid "Enable logging"
 msgstr ""
 
-#: extension/prefs.js:343
+#: extension/prefs.js:364
 msgid "Show detailed diagnostics in the journal."
 msgstr ""
 
-#: extension/prefs.js:346
+#: extension/prefs.js:367
 msgid "Startup delay (ms)"
 msgstr ""
 
-#: extension/prefs.js:347
+#: extension/prefs.js:368
 msgid "Set to zero to start immediately."
 msgstr ""
 
-#: extension/prefs.js:362
+#: extension/prefs.js:383
 msgid "Performance"
 msgstr ""
 
-#: extension/prefs.js:363
+#: extension/prefs.js:384
 msgid "An integrated GPU reduces power use and copies between GPUs."
 msgstr ""
 
-#: extension/prefs.js:368
+#: extension/prefs.js:389
 msgid "Graphics processor"
 msgstr ""
 
-#: extension/prefs.js:369
+#: extension/prefs.js:390
 msgid "A dedicated GPU does not turn off the GPU used by GNOME Shell."
 msgstr ""
 
-#: extension/prefs.js:371
+#: extension/prefs.js:392
 msgid "Automatic (prefer integrated GPU)"
 msgstr ""
 
-#: extension/prefs.js:384
+#: extension/prefs.js:405
 msgid "Audio"
 msgstr ""
 
-#: extension/prefs.js:387
+#: extension/prefs.js:408
 msgid "Mute the video without changing the volume."
 msgstr ""
 
-#: extension/prefs.js:388
+#: extension/prefs.js:409
 msgid "Volume"
 msgstr ""
 
-#: extension/prefs.js:442
+#: extension/prefs.js:463
 #, javascript-format
 msgid "Preparing image %d of %d…"
 msgstr ""
 
-#: extension/prefs.js:456
+#: extension/prefs.js:477
 msgid "Some video images could not be prepared"
 msgstr ""
 
-#: extension/prefs.js:457
-msgid "Check that these files contain a supported video and try again:"
-msgstr ""
-
-#: extension/prefs.js:460
+#: extension/prefs.js:480
 msgid "Close"
 msgstr ""
 
-#: extension/prefs.js:509
+#: extension/prefs.js:529
 #, javascript-format
 msgid "Version %s"
 msgstr ""
 
-#: extension/prefs.js:512
+#: extension/prefs.js:532
 msgid "Video wallpapers for GNOME Shell on Wayland."
 msgstr ""
 
-#: extension/prefs.js:517
+#: extension/prefs.js:537
 msgid ""
 "Free software licensed under the GNU General Public License, version 3 or "
 "later."
 msgstr ""
 
-#: extension/prefs.js:523
+#: extension/prefs.js:543
 msgid "This program comes with absolutely no warranty."
 msgstr ""
 
-#: extension/prefs.js:528
+#: extension/prefs.js:548
 msgid "Project on GitHub"
 msgstr ""
 
-#: extension/prefs.js:530
+#: extension/prefs.js:550
 msgid "Read the license"
 msgstr ""

@@ -4,11 +4,13 @@ import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import System from 'system';
 import {cachedImages, prepareImages} from '../extension/video-images.js';
+import {parseImageWorkerError} from '../extension/image-errors.js';
 
 const directory = ARGV[1] || GLib.dir_make_tmp('jellyfish-image-test-XXXXXX');
 if (ARGV[0] !== '--isolated') {
     const launcher = new Gio.SubprocessLauncher({flags: Gio.SubprocessFlags.NONE});
     launcher.setenv('XDG_CACHE_HOME', directory, true);
+    launcher.setenv('GST_PLUGIN_FEATURE_RANK', 'nvh265dec:4096,vah265dec:4096', true);
     let code = 0;
     try {
         launcher.spawnv(['gjs', '-m', Gio.File.new_for_uri(import.meta.url).get_path(),
@@ -75,11 +77,55 @@ async function run() {
     assert(before.get_attribute_uint64('time::modified') === after.get_attribute_uint64('time::modified') &&
         before.get_attribute_uint32('time::modified-usec') === after.get_attribute_uint32('time::modified-usec'),
     'Reusing a cache entry must not regenerate images');
+
+    const hevc = Gio.File.new_for_path(GLib.build_filenamev([directory, 'hevc.mp4']));
+    Gio.Subprocess.new([
+        'gst-launch-1.0', '-q', 'videotestsrc', 'num-buffers=3', '!',
+        'video/x-raw,width=640,height=360,framerate=10/1', '!',
+        'x265enc', 'speed-preset=ultrafast', 'option-string=pools=none:frame-threads=1', '!',
+        'h265parse', '!', 'mp4mux', '!', 'filesink', `location=${hevc.get_path()}`,
+    ], Gio.SubprocessFlags.NONE).wait_check(null);
+    const hevcImages = await prepareImages(extensionPath, hevc.get_uri(), new Gio.Cancellable());
+    assert(JSON.stringify(jpegSize(hevcImages.wallpaper)) === '[640,360]', 'Decode HEVC/MP4 in software');
+    assert(JSON.stringify(jpegSize(hevcImages.thumbnail)) === '[160,90]', 'Create HEVC thumbnails');
+    await prepareImages('/nonexistent-jellyfish-helper', hevc.get_uri(), new Gio.Cancellable());
+
+    const writeFailure = Gio.Subprocess.new([
+        'gjs', '-m', GLib.build_filenamev([extensionPath, 'image-worker.js']), hevc.get_uri(),
+        GLib.build_filenamev([directory, 'output.jpg']),
+        GLib.build_filenamev([directory, 'missing-directory', 'thumbnail.jpg']),
+    ], Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE);
+    const [, stdout, stderr] = writeFailure.communicate_utf8(null, null);
+    assert(!writeFailure.get_successful() && parseImageWorkerError(stdout, stderr).code === 'write',
+        'Distinguish cache write errors from decoding failures');
+    assert(stdout.includes('STATUS IMAGE_DECODERS software=true'), 'Apply the image decoder policy');
+    assert(stdout.includes('STATUS IMAGE_FRAME caps=video/x-raw,') &&
+        !stdout.includes('memory:CUDAMemory') && !stdout.includes('memory:DMABuf'),
+    'Capture frames in system memory');
+
+    const missingDecoderLauncher = new Gio.SubprocessLauncher({
+        flags: Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE,
+    });
+    missingDecoderLauncher.setenv('GST_PLUGIN_FEATURE_RANK', 'avdec_h265:0,libde265dec:0', true);
+    try {
+        const missingDecoder = missingDecoderLauncher.spawnv([
+            'gjs', '-m', GLib.build_filenamev([extensionPath, 'image-worker.js']), hevc.get_uri(),
+            GLib.build_filenamev([directory, 'no-decoder.jpg']),
+            GLib.build_filenamev([directory, 'no-decoder-thumbnail.jpg']),
+        ]);
+        const [, output, diagnostics] = missingDecoder.communicate_utf8(null, null);
+        assert(!missingDecoder.get_successful() &&
+            parseImageWorkerError(output, diagnostics).code === 'missing-plugin',
+        'Identify a missing software decoder');
+    } finally {
+        missingDecoderLauncher.close();
+    }
     GLib.file_set_contents(invalid.get_path(), 'Not a video');
     let rejected = false;
     try {
         await prepareImages(extensionPath, invalid.get_uri(), new Gio.Cancellable());
-    } catch (_error) {
+    } catch (error) {
+        assert(error.code === 'decode', 'Report a decoding error for invalid video');
         rejected = true;
     }
     assert(rejected && !cachedImages(invalid.get_uri()), 'Reject undecodable files');
@@ -88,7 +134,8 @@ async function run() {
     rejected = false;
     try {
         await prepareImages(extensionPath, invalid.get_uri(), cancelled);
-    } catch (_error) {
+    } catch (error) {
+        assert(error.code === 'cancelled', 'Report cancellation separately');
         rejected = true;
     }
     assert(rejected, 'Honor cancellation');

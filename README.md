@@ -31,7 +31,11 @@ remains visible and interactive. The panel icon follows your system theme.
 - GPU drivers appropriate for hardware decoding on your machine.
 - UPower for the low-battery pause rule (normally included with GNOME).
 
-Image preparation uses GStreamer in a separate process. FFmpeg is not required.
+Image preparation uses GStreamer software decoders in a separate process, with
+frames kept in system memory before JPEG encoding. Install the GStreamer libav
+plugins for software decoding of formats such as H.264 and H.265/HEVC. This
+short-lived preparation step does not change the GPU policy used for video
+playback. FFmpeg is not required.
 Package names vary by distribution; install the libraries, bindings, plugins,
 and codecs above. Verify the runtime dependencies with:
 
@@ -42,7 +46,82 @@ gjs -m extension/image-worker.js --check
 
 Building requires `make`, `jq`, `eslint`, `glib-compile-schemas`, GNU `gettext`
 (`msgfmt` and `xgettext`), `zip`, and `gnome-extensions`. The image integration test
-also uses `gst-launch-1.0`, `vp8enc`, and `webmmux` to create a test video.
+also uses `gst-launch-1.0`, `vp8enc`, `webmmux`, `x265enc`, `h265parse`, and
+`mp4mux` to exercise VP8/WebM and H.265/MP4 image preparation.
+
+### Install dependencies
+
+These commands target a regular GNOME installation with distribution packages.
+Check `gnome-shell --version` first: **Jellyfish currently supports GNOME Shell
+50 on Wayland only**. Installing the packages below does not upgrade an older
+Shell to version 50. In particular, [Debian 13 (Trixie)](https://packages.debian.org/trixie/gnome/gnome-shell)
+ships GNOME Shell 48;
+use a Debian release that actually provides GNOME Shell 50. Check the version
+again after any distribution upgrade.
+
+The first command for each distribution installs runtime dependencies. The
+second installs tools needed to build and install from this repository.
+
+#### Ubuntu 26.04
+
+```bash
+sudo apt update
+sudo apt install \
+  gjs gir1.2-gtk-4.0 gir1.2-adw-1 gir1.2-gstreamer-1.0 \
+  gir1.2-gst-plugins-base-1.0 gstreamer1.0-tools \
+  gstreamer1.0-plugins-base gstreamer1.0-plugins-good \
+  gstreamer1.0-plugins-bad gstreamer1.0-plugins-extra \
+  gstreamer1.0-gl gstreamer1.0-gtk4 gstreamer1.0-libav upower
+sudo apt install make jq eslint gettext libglib2.0-bin zip
+```
+
+#### Debian with GNOME Shell 50
+
+```bash
+sudo apt update
+sudo apt install \
+  gjs gir1.2-gtk-4.0 gir1.2-adw-1 gir1.2-gstreamer-1.0 \
+  gir1.2-gst-plugins-base-1.0 gstreamer1.0-tools \
+  gstreamer1.0-plugins-base gstreamer1.0-plugins-good \
+  gstreamer1.0-plugins-bad gstreamer1.0-gl \
+  gstreamer1.0-gtk4 gstreamer1.0-libav upower
+sudo apt install make jq eslint gettext libglib2.0-bin zip
+```
+
+#### Fedora with GNOME Shell 50
+
+```bash
+sudo dnf install \
+  gjs gtk4 libadwaita gstreamer1 gstreamer1-plugins-base \
+  gstreamer1-plugins-good gstreamer1-plugins-bad-free \
+  gstreamer1-plugin-gtk4 gstreamer1-plugin-libav upower
+sudo dnf install make jq eslint gettext glib2 zip
+```
+
+#### Arch Linux with GNOME Shell 50
+
+```bash
+sudo pacman -Syu
+sudo pacman -S --needed \
+  gjs gtk4 libadwaita gstreamer gst-plugins-base \
+  gst-plugins-good gst-plugins-bad gst-plugin-gtk4 gst-libav upower
+sudo pacman -S --needed make jq eslint gettext glib2 zip
+```
+
+`gettext` supplies `msgfmt` and `xgettext`. The GLib packages supply
+`glib-compile-schemas`; `gnome-extensions` comes with GNOME Shell. These commands
+cover the common software decoders, including GStreamer libav. GPU drivers and
+additional codecs vary by hardware and video format. On Intel GPUs, install a
+VA-API driver so hardware acceleration can be used — for example
+`intel-media-va-driver` on Debian and Ubuntu, or `intel-media-driver` on Fedora
+and Arch. If a video still cannot be decoded, check the available elements with
+`gst-inspect-1.0 avdec_h265` or the decoder matching your file. The optional
+`make check-images` test also requires `x265enc`, which may need an additional
+codec package on some distributions.
+
+Package names were checked against the [Debian package directory](https://packages.debian.org/search?keywords=gstreamer1.0-gtk4),
+[Fedora package directory](https://packages.fedoraproject.org/pkgs/rust-gst-plugin-gtk4/gstreamer1-plugin-gtk4/),
+and [Arch package directory](https://archlinux.org/packages/extra/x86_64/gst-plugin-gtk4/).
 
 ## Build and install
 
@@ -80,9 +159,10 @@ upgrading to prepare images for previously configured videos.
 
 Choose a single video or an experimental playlist. Each selection prepares a
 full-size JPEG and a small thumbnail before adding the video to the active source.
-Preparation runs asynchronously with progress and cancellation. Unsupported files
-are reported; successfully prepared playlist items can still be added. Canceling
-preparation leaves the selection unchanged.
+Preparation runs asynchronously with progress and cancellation. Failures are
+reported per file, distinguishing missing codecs, decoding, JPEG conversion,
+timeouts, and cache write errors. Successfully prepared playlist items can still
+be added. Canceling preparation leaves the selection unchanged.
 
 Use the arrows to reorder playlist items. Each video plays five times by default
 (minimum one) before advancing; the playlist loops back to its beginning. Missing
@@ -137,6 +217,9 @@ make pot           # Update the translation template
 make translations  # Validate and compile translations
 ```
 
+`Project-Id-Version` and `Report-Msgid-Bugs-To` are filled from the `name`,
+`version`, and `url` fields in `extension/metadata.json`.
+
 Translations live in `po/`; compiled catalogs are included in the package. To
 contribute a language, create its `.po` file from `po/jellyfish.pot`, translate the
 messages, and run `make check` and `make pack`.
@@ -152,9 +235,10 @@ journalctl --user -f -o cat /usr/bin/gnome-shell
 Enable logging to inspect GPU selection, decoder status, video caps, and monitor
 attachment. `hardware=true` indicates a hardware decoder; `DMABuf` or `GLMemory`
 in video caps indicates a suitable memory path. A plugin's presence alone does not
-prove that the GPU driver supports the selected codec. Intel/AMD typically use
-VA-API drivers; NVIDIA uses NVDEC with the `nvcodec` plugin. Selecting a dedicated
-GPU does not disable the GPU that GNOME uses to compose the desktop.
+prove that the GPU driver supports the selected codec. Intel and AMD typically
+use VA-API drivers; on Intel, install a driver such as `intel-media-va-driver`.
+NVIDIA uses NVDEC with the `nvcodec` plugin. Selecting a dedicated GPU does not
+disable the GPU that GNOME uses to compose the desktop.
 
 Runtime code is in `extension/`. The Shell side uses Clutter and never imports
 GTK. A separate GTK/GStreamer player shares one decoded video across monitor
